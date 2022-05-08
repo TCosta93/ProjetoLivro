@@ -1,16 +1,16 @@
-public class Livro {
+public class Livro implements Publicacao {
 
     private String titulo,autor;
     private int totPaginas,pagAtual;
-    private boolean aberta; 
+    private boolean aberto; 
     private Pessoa leitor;
     
    
     //crio o metodo Detalhes do livro
    
     public String detalhes() {
-        return "Livro [aberta=" + aberta + ", autor=" + autor + ", leitor=" + leitor + ", pagAtual=" + pagAtual
-                + ", titulo=" + titulo + ", totPaginas=" + totPaginas + "]";
+        return "do Livro:  \n aberto=" + aberto + ",\n autor=" + autor + ",\n leitor=" + leitor.getNome() + ",\n pagAtual=" + pagAtual
+                + ",\n titulo=" + titulo + ",\n totPaginas=" + totPaginas ;
     }
 
     //crio o construtor
@@ -18,6 +18,8 @@ public class Livro {
         this.titulo = titulo;
         this.autor = autor;
         this.totPaginas = totPaginas;
+        this.aberto=false;
+        this.totPaginas=0;
         this.leitor = leitor;
     }
 
@@ -56,11 +58,11 @@ public class Livro {
     }
 
     public boolean isAberta() {
-        return aberta;
+        return aberto;
     }
 
-    public void setAberta(boolean aberta) {
-        this.aberta = aberta;
+    public void setAberta(boolean aberto) {
+        this.aberto = aberto;
     }
 
     public Pessoa getLeitor() {
@@ -69,6 +71,39 @@ public class Livro {
 
     public void setLeitor(Pessoa leitor) {
         this.leitor = leitor;
+    }
+
+    @Override
+    public void abrir() {
+        this.aberto=true;
+    }
+
+    @Override
+    public void fechar() {   
+        this.aberto=false;
+        
+    }
+
+    @Override
+    public void folhear(int p) {   
+        if(p>this.totPaginas){
+            this.totPaginas=0;
+        }else{
+            this.pagAtual=p;
+        }
+       
+    }
+
+    @Override
+    public void avancarPag() {
+        this.pagAtual++;
+        
+    }
+
+    @Override
+    public void voltarPag() {
+        this.pagAtual--;
+        
     }
     
 }
