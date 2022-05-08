@@ -5,6 +5,7 @@ public class Pessoa {
     // metodos publicos
 
     public void fazerAniversario(){
+        this.idade=this.idade+1;
 
     }
 
